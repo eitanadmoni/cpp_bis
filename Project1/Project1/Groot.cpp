@@ -1,11 +1,6 @@
 #include <cmath>
 #include <iostream>
 
-enum return_values
-{
-    SUCCESS = 0,
-    FAILURE = -1,
-};
 
 float print_sqrt(float num)
 {
@@ -23,20 +18,19 @@ float print_sqrt(float num)
     }
 }
 
-float get_input_num(){
+float get_input_num()
+{
     // function to get num from user and check it's legality
     float num = 0;
     std::cout << "Enter a number: " << std::endl;
     std::cin >> num; // taking the number to calculate sqrt of from the user
     if (!std::cin)
     {
-        std::cout << "Input must be a number!";
-        return FAILURE;
+        throw "Input must be a number!";
     }
     if (num < 0) // sqrt can be taken just if num >= 0
     {
-        std::cout << "Num must be greater than 0!";
-        return FAILURE;
+        throw "Num must be greater than 0!";
     }
     return num;
 }
@@ -44,14 +38,8 @@ float get_input_num(){
 int main()
 {
     float num = 0;
-    float sqrt = 0;
 
     num = get_input_num();
-    if (num < 0)
-    {
-        return FAILURE;
-    }
-
-    sqrt = print_sqrt(num);
-    return SUCCESS;
+    print_sqrt(num);
+    return 0;
 }
