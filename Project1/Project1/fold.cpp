@@ -1,16 +1,17 @@
-#include <iostream>
+#include <stdio.h>
+
 
 int main()
 {
     int i, j = 0;
-    std::cout << "Multiplication table up to 11: " << std::endl;
+    printf("Multiplication table up to 11: \n");
     for (i = 1; i <= 11; i++)
     { 
         for (j = 1; j <= 11; j++)
         {
-            std::cout << i * j << " ";
+            printf("%d " , i * j);
         }
-        std::cout << std::endl;
+        printf("\n");
     }
     return 0;
 }
