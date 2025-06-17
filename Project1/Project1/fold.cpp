@@ -1,16 +1,23 @@
 #include <iostream>
 
-int main()
+#define SIZE_OF_BOARD 11
+
+void print_multiplication(int num)
 {
     int i, j = 0;
-    std::cout << "Multiplication table up to 11: " << std::endl;
-    for (i = 1; i <= 11; i++)
-    { 
-        for (j = 1; j <= 11; j++)
+    std::cout << "Multiplication table up to  " << num << ":" << std::endl;
+    for (i = 1; i <= num; i++)
+    {
+        for (j = 1; j <= num; j++)
         {
             std::cout << i * j << " ";
         }
         std::cout << std::endl;
     }
+}
+
+int main()
+{
+    print_multiplication(SIZE_OF_BOARD);
     return 0;
 }
