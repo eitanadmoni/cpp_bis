@@ -10,7 +10,7 @@ void print_multiplication(int num)
     {
         for (j = 1; j <= num; j++)
         {
-            std::cout << i * j << " ";
+            std::cout << " " << i * j << "  ";
         }
         std::cout << std::endl;
     }
