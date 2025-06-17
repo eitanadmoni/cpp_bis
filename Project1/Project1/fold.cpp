@@ -5,13 +5,12 @@
 #define SIZE_OF_BOARD 11
 #define SIZE_OF_CELL 4
 
+/**
+Function to print the multiplication board from 1 to boardSize
+@param board_size the size of the multiplication board to print
+*/
 void print_multiplication(int boardSize)
 {
-    /**
-    Function to print the multiplication board from 1 to boardSize
-    @param board_size the size of the multiplication board to print
-    */
-   
     int row, col = 0;
     std::cout << "Multiplication table up to  " << boardSize << ":" << std::endl;
     for (row = 1; row <= boardSize; row++)
