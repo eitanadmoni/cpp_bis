@@ -1,4 +1,6 @@
 #include <iostream>
+#include <cmath>
+
 
 enum return_values
 {
@@ -6,8 +8,10 @@ enum return_values
     FAILURE = -1,
 };
 
-float print_sqrt(float num) // function to print and return a given number
+float print_sqrt(float num) 
 {
+    //A function to print and return a given number, throwing error if occurs and return 1-
+    
     float sqrt = 0;
     if (num < 0) // sqrt can be taken just if num >= 0
     {
@@ -20,7 +24,7 @@ float print_sqrt(float num) // function to print and return a given number
         std::cout << "sqrt of input is:  " << sqrt;
         return sqrt;
     }
-    catch (...) // handling exceptions
+    catch (...) 
     {
         std::cout << "Error while taking sqrt from number, please enter a positive number";
         return FAILURE;
