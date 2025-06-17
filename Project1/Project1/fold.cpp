@@ -3,17 +3,22 @@
 #include <sstream>
 
 #define SIZE_OF_BOARD 11
+#define SIZE_OF_CELL 4
 
-void print_multiplication(int num)
+void print_multiplication(int boardSize)
 {
-    // function to print the multiplication board from 1 to num
-    int i, j = 0;
-    std::cout << "Multiplication table up to  " << num << ":" << std::endl;
-    for (i = 1; i <= num; i++) // runing all numbers in the range and print the multiplication
+    /**
+    Function to print the multiplication board from 1 to boardSize
+    @param board_size the size of the multiplication board to print
+    */
+   
+    int row, col = 0;
+    std::cout << "Multiplication table up to  " << boardSize << ":" << std::endl;
+    for (row = 1; row <= boardSize; row++)
     {
-        for (j = 1; j <= num; j++)
+        for (col = 1; col <= boardSize; col++)
         {
-            std::cout << std::setw(4) << std::left << i * j;
+            std::cout << std::setw(SIZE_OF_CELL) << std::left << row * col;
         }
         std::cout << "\n"; // new row of the board
     }
