@@ -53,9 +53,5 @@ int main()
     }
 
     sqrt = print_sqrt(num);
-    if (sqrt < 0) // if there is some problem in print_sqrt the value will be -1, else sqrt(num) that always >= 0
-    {
-        return FAILURE;
-    }
     return SUCCESS;
 }
