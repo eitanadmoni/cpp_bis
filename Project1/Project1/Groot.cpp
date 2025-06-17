@@ -10,13 +10,7 @@ enum return_values
 float print_sqrt(float num)
 {
     // A function to print and return a given number, throwing error if occurs and return 1-
-
     float sqrt = 0;
-    if (num < 0) // sqrt can be taken just if num >= 0
-    {
-        std::cout << "Num must be greater than 0!";
-        return FAILURE;
-    }
     try
     {
         sqrt = std::sqrt(num); // calculating sqrt of the num
@@ -29,10 +23,9 @@ float print_sqrt(float num)
     }
 }
 
-int main()
-{
+float get_input_num(){
+    // function to get num from user and check it's legality
     float num = 0;
-    float sqrt = 0;
     std::cout << "Enter a number: " << std::endl;
     std::cin >> num; // taking the number to calculate sqrt of from the user
     if (!std::cin)
@@ -40,6 +33,25 @@ int main()
         std::cout << "Input must be a number!";
         return FAILURE;
     }
+    if (num < 0) // sqrt can be taken just if num >= 0
+    {
+        std::cout << "Num must be greater than 0!";
+        return FAILURE;
+    }
+    return num;
+}
+
+int main()
+{
+    float num = 0;
+    float sqrt = 0;
+
+    num = get_input_num();
+    if (num < 0)
+    {
+        return FAILURE;
+    }
+
     sqrt = print_sqrt(num);
     if (sqrt < 0) // if there is some problem in print_sqrt the value will be -1, else sqrt(num) that always >= 0
     {
