@@ -1,32 +1,42 @@
 #include <iostream>
 
-#define SUCCESS 0
-#define FAILURE -1
-
-
-int print_sqrt(float num)
+enum return_values
 {
-    if (num < 0)
+    SUCCESS = 0,
+    FAILURE = -1,
+};
+
+float print_sqrt(float num) // function to print and return a given number
+{
+    float sqrt = 0;
+    if (num < 0) // sqrt can be taken just if num >= 0
     {
         std::cout << "Num must be greater than 0!";
         return FAILURE;
     }
     try
     {
-        std::cout << "sqrt of input is:  " << std::sqrt(num);
+        sqrt = std::sqrt(num); // calculating sqrt of the num
+        std::cout << "sqrt of input is:  " << sqrt;
+        return sqrt;
     }
-    catch (...)
+    catch (...) // handling exceptions
     {
         std::cout << "Error while taking sqrt from number, please enter a positive number";
         return FAILURE;
     }
-    return SUCCESS;
 }
 
 int main()
 {
     float num = 0;
+    float sqrt = 0;
     std::cout << "Enter a number: " << std::endl;
-    std::cin >> num;
-    return print_sqrt(num);
+    std::cin >> num; // taking the number to calculate sqrt of from the user
+    sqrt = print_sqrt(num);
+    if (sqrt < 0) // if there is some problem in print_sqrt the value will be -1, else sqrt(num) that always >= 0
+    {
+        return FAILURE;
+    }
+    return SUCCESS;
 }
