@@ -4,6 +4,7 @@
 
 void print_multiplication(int num)
 {
+    // function to print the multiplication board from 1 to num
     int i, j = 0;
     std::cout << "Multiplication table up to  " << num << ":" << std::endl;
     for (i = 1; i <= num; i++)
