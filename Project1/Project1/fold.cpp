@@ -2,29 +2,45 @@
 #include <iostream>
 #include <sstream>
 
-#define SIZE_OF_BOARD 11
-#define SIZE_OF_CELL 4
+/**
+Function to calculate the number of digits in some number
+@param num the number to calculate it's num of digits
+*/
+int digitsNum(int num)
+{
+    int digits = 0;
+    while (num != 0)
+    {
+        num /= 10;
+        digits += 1;
+    }
+    return digits;
+}
 
 /**
 Function to print the multiplication board from 1 to boardSize
 @param board_size the size of the multiplication board to print
 */
-void print_multiplication(int boardSize)
+void printMultiplication(int boardSize)
 {
-    int row, col = 0;
-    std::cout << "Multiplication table up to  " << boardSize << ":" << std::endl;
-    for (row = 1; row <= boardSize; row++)
+    using std::cout;
+    using std::left;
+    using std::setw;
+    int cellSize = digitsNum(boardSize * boardSize) + 1;
+    cout << "Multiplication table up to  " << boardSize << ":\n";
+    for (int row = 1; row <= boardSize; row++)
     {
-        for (col = 1; col <= boardSize; col++)
+        for (int col = 1; col <= boardSize; col++)
         {
-            std::cout << std::setw(SIZE_OF_CELL) << std::left << row * col;
+            cout << setw(cellSize) << left << row * col;
         }
-        std::cout << "\n"; // new row of the board
+        cout << "\n"; // new row of the board
     }
 }
 
 int main()
 {
-    print_multiplication(SIZE_OF_BOARD);
+    const int boardSize = 11;
+    printMultiplication(boardSize);
     return 0;
 }
