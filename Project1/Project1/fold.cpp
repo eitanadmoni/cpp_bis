@@ -5,6 +5,8 @@ using std::cout;
 using std::left;
 using std::setw;
 
+#define SUCCESS 0;
+
 /**
 Function to calculate the number of digits in some number
 @param num the number to calculate it's num of digits
@@ -42,5 +44,5 @@ int main()
 {
     const int boardSize = 11;
     printMultiplication(boardSize);
-    return 0;
+    return SUCCESS;
 }
