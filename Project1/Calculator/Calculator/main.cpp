@@ -1,6 +1,6 @@
 #include <iostream>
 #include "Calculator.h"
-#include  "CalculateException.h"
+#include "CalculateException.h"
 #include <string>
 
 using std::cout;

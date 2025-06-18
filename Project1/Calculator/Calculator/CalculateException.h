@@ -3,9 +3,6 @@
 
 class CalculateException
 {
-private:
-	std::string m_error;
-
 public:
 	/**
 	* Builder for CalculateException class
@@ -19,4 +16,7 @@ public:
 	* @return Exception massege
 	*/
 	const std::string& getError() const;
+
+private:
+	std::string m_error;
 };
