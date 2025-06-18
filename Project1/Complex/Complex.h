@@ -1,4 +1,5 @@
 #pragma once
+
 class ComplexNum
 {
 public:
@@ -13,7 +14,7 @@ public:
 	ComplexNum operator+(const ComplexNum& other) const;
 	ComplexNum operator-(const ComplexNum& other) const;
 	ComplexNum operator*(const ComplexNum& other) const;
-	ComplexNum operator==(const ComplexNum& other) const;
+	bool operator==(const ComplexNum& other) const;
 
 	void printComplex();
 
