@@ -1,6 +1,10 @@
 #include <cmath>
 #include <iostream>
 
+using std::cout;
+using std::sqrt;
+using std::cin;
+
 enum error_code
 {
     INPUT_WAS_NOT_A_NUMBER,
@@ -21,7 +25,6 @@ enum return_values
 // @return return_value for the main function
 int errorHandler(error_code errorCode)
 {
-    using std::cout;
     switch (errorCode)
     {
     case INPUT_WAS_NOT_A_NUMBER:
@@ -44,12 +47,12 @@ int errorHandler(error_code errorCode)
 // @return num the number sqrt or error code if error was occured
 float printSqrt(float num)
 {
-    float sqrt = 0;
+    float num_sqrt = 0;
     try
     {
-        sqrt = std::sqrt(num); // calculating sqrt of the num
-        std::cout << "sqrt of input is:  " << sqrt;
-        return sqrt;
+        num_sqrt = sqrt(num); // calculating sqrt of the num
+        cout << "sqrt of input is:  " << num_sqrt;
+        return num_sqrt;
     }
     catch (...)
     {
@@ -62,9 +65,9 @@ float printSqrt(float num)
 float getInputNum()
 {
     float num = 0;
-    std::cout << "Enter a number: " << std::endl;
-    std::cin >> num; // taking the number to calculate sqrt of from the user
-    if (!std::cin)
+    cout << "Enter a number: \n";
+    cin >> num; // taking the number to calculate sqrt of from the user
+    if (!cin)
     {
         throw INPUT_WAS_NOT_A_NUMBER;
     }
