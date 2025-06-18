@@ -1,7 +1,14 @@
 #include <iostream>
 #include <cmath>
+
 using std::cout;
 using std::sqrt;
+
+enum return_values
+{
+	SUCCESS,
+	FAILURE = -1,
+};
 
 /* function to check if given integer is prime, the func returns true or false
 	the func iteratng all numbers from 1 to sqrt(num), if the num isn't prime, there is
@@ -38,12 +45,26 @@ void primeArrayFill(int* arrPointer, int numOfPrimes) {
 	}
 }
 
+/**
+* Function to check if all untegers in given array are primes
+* @param arrPointer pointer to integers array 
+* @param numOfPrimes number of primes should be in the array
+* @return return_value fo the main function
+*/
+int checkPrimarityOfArr(int* arrPointer, int numOfPrimes) {
+	for (int i = 0; i < 30; i++) {
+		if (!isPrime(arrPointer[i])) {
+			cout << "\nNum in index " << i << "isn't prime! num is: " << arrPointer[i] << "\n";
+			return FAILURE;
+		}
+		cout << arrPointer[i] << " ";
+	}
+	return SUCCESS;
+}
 
 int main() {
-	int primesArr[30] = { 0 };
-	primeArrayFill(primesArr, 30);
-	for (int i = 0; i < 30; i++) {
-		cout << primesArr[i] << " ";
-	}
-	return 0;
+	const int numberOfPrimes = 30;
+	int primesArr[numberOfPrimes] = { 0 };
+	primeArrayFill(primesArr, numberOfPrimes);
+	return checkPrimarityOfArr(primesArr, numberOfPrimes);
 }
