@@ -3,19 +3,24 @@
 
 enum error_code
 {
-    NOT_NUM,
-    NEGATIVE,
-    SQRT_ERR,
+    INPUT_WAS_NOT_A_NUMBER,
+    INPUT_WAS_A_NEGATIVE_NUMBER,
+    ERROR_WHILE_TAKING_SQRT,
 };
 
 enum return_values
 {
     SUCCESS,
-    FAILURE = -1,
+    ILLEGAL_INPUT = -1,
+    SQRT_FAILURE = -2,
+    GENERAL_FAILURE = -3,
 };
-    float print_sqrt(float num)
+
+// A function to print and return a given number
+// @param num the number to calculate sqrt for
+// @return num the number sqrt or error code if error was occured
+float printSqrt(float num)
 {
-    // A function to print and return a given number, throwing error if occurs and return 1-
     float sqrt = 0;
     try
     {
@@ -25,54 +30,62 @@ enum return_values
     }
     catch (...)
     {
-        throw SQRT_ERR;
+        throw ERROR_WHILE_TAKING_SQRT;
     }
 }
 
-float get_input_num()
+// function to get num from user and check it's legality
+// @return num input number or error code
+float getInputNum()
 {
-    // function to get num from user and check it's legality
     float num = 0;
     std::cout << "Enter a number: " << std::endl;
     std::cin >> num; // taking the number to calculate sqrt of from the user
     if (!std::cin)
     {
-        throw NOT_NUM;
+        throw INPUT_WAS_NOT_A_NUMBER;
     }
     if (num < 0) // sqrt can be taken just if num >= 0
     {
-        throw NEGATIVE;
+        throw INPUT_WAS_A_NEGATIVE_NUMBER;
     }
     return num;
+}
+
+// function to handke errors and print matching message
+// @param errorCode code for which error was occured
+// @return return_value for the main function 
+int errorHandler(error_code errorCode)
+{
+    using std::cout;
+    switch (errorCode)
+    {
+    case INPUT_WAS_NOT_A_NUMBER:
+        cout << "Input must be a number!";
+        return ILLEGAL_INPUT;
+    case INPUT_WAS_A_NEGATIVE_NUMBER:
+        cout << "Number must be positive!";
+        return ILLEGAL_INPUT;
+    case ERROR_WHILE_TAKING_SQRT:
+        cout << "Error while taking sqrt";
+        return SQRT_FAILURE;
+    default:
+        cout << "Undefined error";
+        return GENERAL_FAILURE;
+    }
 }
 
 int main()
 {
     float num = 0;
-    using std::cout;
     try
     {
-        num = get_input_num();
-        print_sqrt(num);
-    
+        num = getInputNum();
+        printSqrt(num);
     }
     catch (error_code errorCode)
     {
-        switch (errorCode)
-        {
-        case NOT_NUM:
-            cout << "Input must be a number!";
-            return FAILURE;
-        case NEGATIVE:
-            cout << "Number must be positive!";
-            return FAILURE;
-        case SQRT_ERR:
-            cout << "Error while taking sqrt";
-            return FAILURE;
-        default:
-            cout << "Undefined error";
-            return FAILURE;
-        }
+        return errorHandler(errorCode);
     }
     return SUCCESS;
 }
