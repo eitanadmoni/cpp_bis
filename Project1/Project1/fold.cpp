@@ -1,6 +1,9 @@
 #include <iomanip>
 #include <iostream>
-#include <sstream>
+
+using std::cout;
+using std::left;
+using std::setw;
 
 /**
 Function to calculate the number of digits in some number
@@ -23,9 +26,6 @@ Function to print the multiplication board from 1 to boardSize
 */
 void printMultiplication(int boardSize)
 {
-    using std::cout;
-    using std::left;
-    using std::setw;
     int cellSize = digitsNum(boardSize * boardSize) + 1;
     cout << "Multiplication table up to  " << boardSize << ":\n";
     for (int row = 1; row <= boardSize; row++)
