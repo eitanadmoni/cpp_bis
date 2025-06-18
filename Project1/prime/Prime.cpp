@@ -4,7 +4,7 @@
 
 #define NUM_TO_CHECK 31
 
-bool is_prime(int num)
+bool is_prime(unsigned int num)
 {
 	/*function to check if given integer is prime, the func returns true or false
 	the func iteratng all numbers from 1 to sqrt(num), if the num isn't prime, there is
