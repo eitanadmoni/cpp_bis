@@ -8,6 +8,10 @@ enum return_values
 	FAILURE,
 };
 
+/**
+* Funcion to check the correctness of the complexNum class
+* @return a value that represent the success/failure of the test
+*/
 int checkComplexClass() {
 	if (!((ComplexNum(1, 5) * ComplexNum()) == ComplexNum(0, 0))) {
 		cout << "Wrong number, num shold be: ";
