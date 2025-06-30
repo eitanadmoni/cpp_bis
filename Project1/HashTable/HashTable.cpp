@@ -108,28 +108,26 @@ bool HashTable::checkIfExists(std::string key) {
 
 HashTable HashTable::operator+(HashTable& other) {
 	int numOfItems = 0;
-	HashTable newHash = HashTable(this->getSize());
-	tuple<string, int, int>* newTable = new tuple<string, int, int>[this->getSize()];
+	int size = this->getSize();
+	HashTable newHash = HashTable(size);
 	if (this->getSize() != other.getSize()) {
 		throw HashException("Different size of tables!"); 
 	}
-	for (int i = 0; i < this->getSize(); i++) {
+	for (int i = 0; i < size; i++) {
 		if (get<2>(other.getTable()[i]) == 1)
 		{
-			newTable[i] = other.getTable()[i];
-			numOfItems += 1;
+			newHash.setTableItem(other.getTable()[i], i);
+			newHash.setNumOfItems(newHash.getNumOfItems() + 1);
+
 		}
 		else if (get<2>(this->getTable()[i]) == 1) {
-			newTable[i] = this->getTable()[i];
-			numOfItems += 1;
+			newHash.setTableItem(this -> getTable()[i], i);
+			newHash.setNumOfItems(newHash.getNumOfItems() + 1);
+
 		}
-		else {
-			newTable[i] = { "", NULL, NULL };
-		}
+
 	}
 
-	newHash.setTable(newTable);
-	newHash.setNumOfItems(numOfItems);
 	return newHash;
 }
 
