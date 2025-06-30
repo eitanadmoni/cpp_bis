@@ -1,8 +1,5 @@
 #include "HashTable.h"
-#include <cstddef>
-#include <functional>
-#include <iomanip>
-#include <iostream>
+#include "hashException.h"
 #include <string>
 #include <unordered_set>
 
@@ -68,12 +65,12 @@ void HashTable::addPair(string key, int value) {
 tuple<string, int> HashTable::findItemByKey(string key) {
 	int hashValue = hash<string>{}(key) % this->getSize();
 	tuple<string, int, int> pair = this->getTable()[hashValue];
-	string keyInPlace = get<0>(pair); // TODO: what if there is no item in this place?
+	string keyInPlace = get<0>(pair); 
 	if (keyInPlace == key) {
 		return { get<0>(pair), get<1>(pair) };
 	}
 	else {
-		throw "There is no such key in the table"; // TODO: change to class of errors
+		throw HashException("There is no such key in the table"); 
 	}
 }
 
@@ -81,16 +78,11 @@ tuple<string, int> HashTable::findItemByKey(string key) {
 void HashTable::deleteItem(string key) {
 	int hashValue = hash<string>{}(key) % this->getSize();
 	tuple<string, int, int> pair = this->getTable()[hashValue];
-	string keyInPlace = get<0>(pair); // TODO: what if there is no item in this place?
+	string keyInPlace = get<0>(pair); 
 	if (keyInPlace == key) {
 		this->getTable()[hashValue] = { "", NULL, NULL};
 		this->setNumOfItems(this->getNumOfItems() - 1);
 	}
-}
-
-
-int HashTable::numOfItems() {
-	return this->getNumOfItems();
 }
 
 
@@ -101,7 +93,7 @@ tuple<std::string, int> HashTable::findItemByValue(int value) {
 			return { get<0>(hashPairInPlace), get<1>(hashPairInPlace) };
 		}
 	}
-	throw "There is no item with that value!";
+	throw HashException("There is no item with that value!");
 }
 
 
@@ -119,7 +111,7 @@ HashTable HashTable::operator+(HashTable& other) {
 	HashTable newHash = HashTable(this->getSize());
 	tuple<string, int, int>* newTable = new tuple<string, int, int>[this->getSize()];
 	if (this->getSize() != other.getSize()) {
-		throw "Different size of tables!"; //TODO: class of exceptions
+		throw HashException("Different size of tables!"); 
 	}
 	for (int i = 0; i < this->getSize(); i++) {
 		if (get<2>(other.getTable()[i]) == 1)
@@ -135,6 +127,7 @@ HashTable HashTable::operator+(HashTable& other) {
 			newTable[i] = { "", NULL, NULL };
 		}
 	}
+
 	newHash.setTable(newTable);
 	newHash.setNumOfItems(numOfItems);
 	return newHash;
@@ -144,12 +137,12 @@ HashTable HashTable::operator+(HashTable& other) {
 void HashTable::operator+=(HashTable& other) {
 	int numOfNewItems = 0;
 	if (this->getSize() != other.getSize()) {
-		throw "Different size of tables!"; //TODO: class of exceptions
+		throw HashException("Different size of tables!");
 	}
 	for (int i = 0; i < this->getSize(); i++) {
 		if (get<2>(other.getTable()[i]) == 1)
 		{
-			if (get<2>(this->getTable()[i]) == 1) {
+			if (get<2>(this->getTable()[i]) == 0) {
 				numOfNewItems += 1;
 			}
 			this->setTableItem(other.getTable()[i], i);
@@ -169,4 +162,8 @@ bool HashTable::operator==(HashTable& other) {
 		}
 	}
 	return true;
+}
+
+bool HashTable::operator!=(HashTable& other) {
+	return !(this->operator==(other));
 }

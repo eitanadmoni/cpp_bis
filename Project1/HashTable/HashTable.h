@@ -15,12 +15,13 @@ public:
 	void addPair(std::string key, int value);
 	std::tuple<std::string, int> findItemByKey(std::string key);
 	void deleteItem(std::string key);
-	int numOfItems();
 	std::tuple<std::string, int> findItemByValue(int value);
 	bool checkIfExists(std::string key);
 	HashTable operator+(HashTable& other);
 	void operator+=(HashTable& other);
 	bool operator==(HashTable& other);
+	bool operator!=(HashTable& other);
+
 private:
 	std::tuple<std::string, int, int>* m_table;
 	int m_tableSize;
